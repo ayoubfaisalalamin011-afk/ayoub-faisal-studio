@@ -3,6 +3,7 @@ import { ArrowDownRight, ArrowUpRight, Plus, Minus, Download, Check } from 'luci
 import { useState, type FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { useLocale } from './locale';
+import { SelectedProjects } from './projects';
 
 export function SectionLabel({ number, en, ar }: { number: string; en: string; ar: string }) {
   const { t } = useLocale();
@@ -13,7 +14,7 @@ export function WorkSection({ standalone = false }: { standalone?: boolean }) {
   const Title = standalone ? 'h1' : 'h2';
   return <section className="work-section section-space" data-reveal>
     <div className="section-heading"><div><SectionLabel number="01" en="SELECTED PROJECTS" ar="مشاريع مختارة" /><Title>{t('Considered work.', 'أعمال مدروسة.')}<br /><em>{t('Lasting impact.', 'أثر يدوم.')}</em></Title></div><span className="section-note">{t('Thoughtful by design.\nPurposeful by nature.', 'مدروسة في التصميم.\nهادفة بطبيعتها.')}</span></div>
-    <div className="work-empty"><span className="empty-index">[ 01 — ∞ ]</span><div className="empty-copy"><span className="small-caps">{t('A NEW CHAPTER', 'فصل جديد')}</span><h3>{t('Good things are', 'أعمال تستحق')}<br /><em>{t('in the making.', 'الانتظار.')}</em></h3><p>{t('Real projects. Meaningful stories. Coming soon.', 'مشاريع حقيقية. قصص ملهمة. قريباً.')}</p></div><ArrowDownRight className="empty-arrow" strokeWidth={1} /><span className="empty-bottom">{t('SELECTED WORK — COMING SOON', 'أعمال مختارة — قريباً')}</span></div>
+    <SelectedProjects />
     <div className="work-bottom"><span>{t('A portfolio, always evolving.', 'مساحة إبداعية في تطوّر مستمر.')}</span><Button variant="editorial" asChild><Link to="/about">{t('Meet the person behind the work', 'تعرّف على صاحب هذه الأعمال')}<ArrowUpRight /></Link></Button></div>
   </section>;
 }
