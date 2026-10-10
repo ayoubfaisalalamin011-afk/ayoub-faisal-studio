@@ -197,6 +197,7 @@ body:has(.detail-page) .site-header { color: var(--primary); }
   .service-toggle { grid-template-columns: 35px minmax(0,1fr) 40px; }
 }
 @media (max-width: 760px) {
+  .desktop-cursor { display: none; }
   .site-header { top: 16px; inset-inline: 6%; height: 46px; }
   .wordmark { font-size: 14px; }
   .floating-nav { display: none; }
