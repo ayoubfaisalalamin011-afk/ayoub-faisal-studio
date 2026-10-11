@@ -8,6 +8,7 @@ import { adjacentImage, nexoraProject, royalCareImages, royalCareProject } from 
 export function SelectedProjects() {
   const { t, language } = useLocale();
   const [active, setActive] = useState<number | null>(null);
+  const [featured, setFeatured] = useState(0);
   const [failed, setFailed] = useState<Set<number>>(new Set());
   const [shotFailed, setShotFailed] = useState(false);
   const image = active === null ? undefined : royalCareImages[active];
@@ -22,10 +23,19 @@ export function SelectedProjects() {
     </article>
     <article className="selected-project">
       <div className="project-info"><div><span className="small-caps">02 / ROYAL CARE</span><h3>{t(royalCareProject.title, 'نظام إدارة مستشفى رويال كير')}</h3><p>{t(royalCareProject.description, 'منصة لإدارة المستشفيات وتنظيم سير العمل الطبي والإداري.')}</p></div></div>
-      <div className="project-gallery">{royalCareImages.map((item, index) => <Button variant="editorial" className="gallery-tile" key={item.reference} onClick={() => setActive(index)} aria-label={t(`Open Royal Care image ${index + 1}`, `افتح صورة رويال كير ${index + 1}`)}>
-        {item.src && !failed.has(index) ? <img src={item.src} alt={t(`Royal Care system screenshot ${index + 1}`, `لقطة شاشة نظام رويال كير ${index + 1}`)} loading="lazy" onError={() => markFailed(index)} /> : placeholder(t(`Image ${index + 1} unavailable`, `الصورة ${index + 1} غير متوفرة`))}
-        <span className="gallery-index">{String(index + 1).padStart(2, '0')}</span>
-      </Button>)}</div>
+      <div className="project-gallery">
+        <div className="gallery-featured">
+          <Button variant="editorial" className="gallery-tile gallery-tile--featured" onClick={() => setActive(featured)} aria-label={t(`Open Royal Care image ${featured + 1} fullscreen`, `افتح صورة رويال كير ${featured + 1} بملء الشاشة`)}>
+            {royalCareImages[featured].src && !failed.has(featured) ? <img key={featured} src={royalCareImages[featured].src} alt={t(`Royal Care system screenshot ${featured + 1}`, `لقطة شاشة نظام رويال كير ${featured + 1}`)} onError={() => markFailed(featured)} /> : placeholder(t(`Image ${featured + 1} unavailable`, `الصورة ${featured + 1} غير متوفرة`))}
+            <span className="gallery-index">{String(featured + 1).padStart(2, '0')}</span>
+          </Button>
+          <div className="gallery-featured-controls"><Button variant="navigation" size="icon" onClick={() => setFeatured(c => adjacentImage(c, -1))} aria-label={t('Previous screenshot', 'اللقطة السابقة')} title={t('Previous screenshot', 'اللقطة السابقة')}><ChevronLeft /></Button><span aria-live="polite">{String(featured + 1).padStart(2, '0')} / {String(royalCareImages.length).padStart(2, '0')}</span><Button variant="navigation" size="icon" onClick={() => setFeatured(c => adjacentImage(c, 1))} aria-label={t('Next screenshot', 'اللقطة التالية')} title={t('Next screenshot', 'اللقطة التالية')}><ChevronRight /></Button></div>
+        </div>
+        <div className="gallery-thumbs">{royalCareImages.map((item, index) => <Button variant="editorial" className={`gallery-tile${index === featured ? ' is-active' : ''}`} key={item.reference} onClick={() => setFeatured(index)} aria-pressed={index === featured} aria-label={t(`Show Royal Care image ${index + 1}`, `اعرض صورة رويال كير ${index + 1}`)}>
+          {item.src && !failed.has(index) ? <img src={item.src} alt="" loading="lazy" onError={() => markFailed(index)} /> : placeholder(t(`Image ${index + 1} unavailable`, `الصورة ${index + 1} غير متوفرة`))}
+          <span className="gallery-index">{String(index + 1).padStart(2, '0')}</span>
+        </Button>)}</div>
+      </div>
     </article>
     <Dialog.Root open={active !== null} onOpenChange={open => { if (!open) setActive(null); }}>
       <Dialog.Portal><Dialog.Overlay className="project-lightbox-overlay" /><Dialog.Content className="project-lightbox" dir={language === 'ar' ? 'rtl' : 'ltr'} onKeyDown={event => {
