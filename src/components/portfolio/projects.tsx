@@ -9,6 +9,7 @@ export function SelectedProjects() {
   const { t, language } = useLocale();
   const [active, setActive] = useState<number | null>(null);
   const [failed, setFailed] = useState<Set<number>>(new Set());
+  const [shotFailed, setShotFailed] = useState(false);
   const image = active === null ? undefined : royalCareImages[active];
   const markFailed = (index: number) => setFailed(current => new Set(current).add(index));
   const previous = () => setActive(current => current === null ? null : adjacentImage(current, -1));
@@ -16,7 +17,7 @@ export function SelectedProjects() {
   const placeholder = (label: string) => <span className="project-placeholder"><ImageIcon size={28} strokeWidth={1} aria-hidden="true" /><span>{label}</span></span>;
   return <div className="selected-projects">
     <article className="selected-project">
-      <div className="project-preview">{placeholder(t('NEXORA screenshot pending', 'لقطة شاشة نيكسورا غير متوفرة بعد'))}</div>
+      <div className="project-preview project-preview--shot">{nexoraProject.screenshot && !shotFailed ? <img src={nexoraProject.screenshot} alt={t('NEXORA Digital Innovation Studio homepage screenshot', 'لقطة شاشة الصفحة الرئيسية لمشروع نيكسورا')} loading="lazy" onError={() => setShotFailed(true)} /> : placeholder(t('NEXORA screenshot pending', 'لقطة شاشة نيكسورا غير متوفرة بعد'))}</div>
       <div className="project-info"><div><span className="small-caps">01 / NEXORA</span><h3>{nexoraProject.title}</h3></div><Button variant="portfolio" asChild><a href={nexoraProject.website} target="_blank" rel="noopener noreferrer">{t('Visit Website', 'زيارة الموقع')}<ArrowUpRight aria-hidden="true" /></a></Button></div>
     </article>
     <article className="selected-project">

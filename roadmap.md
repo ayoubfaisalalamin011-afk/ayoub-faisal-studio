@@ -8,3 +8,7 @@
 - [x] Add exactly NEXORA and Royal Care without changing unrelated sections.
 - [x] Verify eight supplied images and add gallery with accessible lightbox.
 - [x] Verify website link, gallery controls, and unavailable-image states.
+
+# NEXORA thumbnail
+- [x] Replace the NEXORA placeholder with the uploaded homepage screenshot, uncropped and rounded.
+- [x] Verify the screenshot displays on desktop and mobile and the Visit Website button still opens in a new tab.

@@ -5,6 +5,7 @@ describe('Selected Projects requirements', () => {
   it('keeps exactly the two supplied projects and only the NEXORA website', () => {
     expect([nexoraProject, royalCareProject]).toHaveLength(2);
     expect(nexoraProject.website).toBe('https://pixel-perfect-render-64528.vercel.app/');
+    expect(nexoraProject.screenshot).toBe('/__l5e/assets-v1/a4513729-d25e-400b-9556-4aeac8206a8c/nexora-homepage.png');
     expect(royalCareProject).not.toHaveProperty('website');
   });
   it('preserves all eight supplied gallery references in order', () => {
