@@ -12,3 +12,4 @@
 - Keep portfolio copy and locale state in a shared browser-safe provider so all pages share English/Arabic and RTL behavior.
 - Use shared portfolio sections for the homepage and dedicated detail routes so navigation stays shareable without duplicating content.
 - Contact drafting is client-only until a real delivery destination is supplied; never claim messages are sent.
+- Keep project data and gallery behavior in a focused shared module, with the installed Radix dialog handling lightbox focus and dismissal; this isolates project updates from unrelated sections.
