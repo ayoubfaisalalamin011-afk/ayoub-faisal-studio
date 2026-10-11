@@ -5,6 +5,6 @@
 - [x] Verify desktop/mobile, reduced motion, and navigation.
 
 # Selected Projects update
-- [ ] Add exactly NEXORA and Royal Care without changing unrelated sections.
-- [ ] Verify eight supplied images and add gallery with accessible lightbox.
-- [ ] Verify website link, gallery controls, and unavailable-image states.
+- [x] Add exactly NEXORA and Royal Care without changing unrelated sections.
+- [x] Verify eight supplied images and add gallery with accessible lightbox.
+- [x] Verify website link, gallery controls, and unavailable-image states.
