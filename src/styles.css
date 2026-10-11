@@ -117,6 +117,9 @@
 .selected-projects { display: grid; gap: 50px; }
 .selected-project { min-width: 0; }
 .project-preview { aspect-ratio: 16 / 7; background: var(--muted); display: grid; place-items: center; }
+.project-preview--shot { aspect-ratio: 1849 / 851; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-md); }
+.project-preview--shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 250ms var(--ease-editorial); }
+.project-preview--shot:hover img { transform: scale(1.02); }
 .project-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 24px; color: var(--muted-foreground); font-size: 12px; text-align: center; white-space: normal; line-height: 1.7; }
 .project-info { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 24px; padding-block: 23px; }
 .project-info > div { min-width: 0; }
@@ -140,7 +143,7 @@
   .project-info { grid-template-columns: minmax(0,1fr); gap: 18px; }
   .project-info > a { justify-self: start; }
   .project-info h3 { font-size: 22px; }
-  .project-preview { aspect-ratio: 16 / 10; }
+  .project-preview:not(.project-preview--shot) { aspect-ratio: 16 / 10; }
   .gallery-tile .project-placeholder { font-size: 10px; padding: 15px; gap: 8px; }
   .project-lightbox { padding: 14px; }
   .lightbox-image { height: 58svh; }
