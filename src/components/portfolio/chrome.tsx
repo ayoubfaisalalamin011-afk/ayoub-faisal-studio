@@ -42,10 +42,11 @@ export function MotionEffects() {
   const cursor = useRef<HTMLDivElement>(null);
   const pathname = useRouterState({ select: s => s.location.pathname });
   useEffect(() => {
+    document.documentElement.classList.add('motion-ready');
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
       if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
     }), { threshold: 0.12 });
-    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+    document.querySelectorAll('[data-reveal], [data-reveal] .selected-project, [data-reveal] .service-row').forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, [pathname]);
   useEffect(() => {
