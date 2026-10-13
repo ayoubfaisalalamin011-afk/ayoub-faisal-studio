@@ -12,3 +12,8 @@
 # NEXORA thumbnail
 - [x] Replace the NEXORA placeholder with the uploaded homepage screenshot, uncropped and rounded.
 - [x] Verify the screenshot displays on desktop and mobile and the Visit Website button still opens in a new tab.
+
+# Royal Care image replacement
+- [ ] Resolve and replace the previous eight images with the sixteen supplied images in exact order.
+- [ ] Keep the first image featured by default and the remaining fifteen selectable without changing gallery styling.
+- [ ] Verify all sixteen images, thumbnail selection, navigation, lightbox, and mobile spacing.
