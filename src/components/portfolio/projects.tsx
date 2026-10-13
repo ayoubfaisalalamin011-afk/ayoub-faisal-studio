@@ -31,7 +31,7 @@ export function SelectedProjects() {
           </Button>
           <div className="gallery-featured-controls"><Button variant="navigation" size="icon" onClick={() => setFeatured(c => adjacentImage(c, -1))} aria-label={t('Previous screenshot', 'اللقطة السابقة')} title={t('Previous screenshot', 'اللقطة السابقة')}><ChevronLeft /></Button><span aria-live="polite">{String(featured + 1).padStart(2, '0')} / {String(royalCareImages.length).padStart(2, '0')}</span><Button variant="navigation" size="icon" onClick={() => setFeatured(c => adjacentImage(c, 1))} aria-label={t('Next screenshot', 'اللقطة التالية')} title={t('Next screenshot', 'اللقطة التالية')}><ChevronRight /></Button></div>
         </div>
-        <div className="gallery-thumbs">{royalCareImages.map((item, index) => <Button variant="editorial" className={`gallery-tile${index === featured ? ' is-active' : ''}`} key={item.reference} onClick={() => setFeatured(index)} aria-pressed={index === featured} aria-label={t(`Show Royal Care image ${index + 1}`, `اعرض صورة رويال كير ${index + 1}`)}>
+        <div className="gallery-thumbs">{royalCareImages.map((item, index) => index === 0 ? null : <Button variant="editorial" className={`gallery-tile${index === featured ? ' is-active' : ''}`} key={item.reference} onClick={() => setFeatured(index)} aria-pressed={index === featured} aria-label={t(`Show Royal Care image ${index + 1}`, `اعرض صورة رويال كير ${index + 1}`)}>
           {item.src && !failed.has(index) ? <img src={item.src} alt="" loading="lazy" onError={() => markFailed(index)} /> : placeholder(t(`Image ${index + 1} unavailable`, `الصورة ${index + 1} غير متوفرة`))}
           <span className="gallery-index">{String(index + 1).padStart(2, '0')}</span>
         </Button>)}</div>
