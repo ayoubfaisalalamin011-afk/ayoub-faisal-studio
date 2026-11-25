@@ -8,18 +8,18 @@ function LocaleControl() {
 }
 afterEach(() => { cleanup(); sessionStorage.clear(); });
 describe('Portfolio language requirements', () => {
-  it('starts in English with left-to-right layout', () => {
+  it('starts in Sudanese Arabic with right-to-left layout', () => {
     render(<LocaleProvider><LocaleControl /></LocaleProvider>);
+    expect(document.documentElement.lang).toBe('ar');
+    expect(document.documentElement.dir).toBe('rtl');
+  });
+  it('switches to English and back to Arabic', () => {
+    const screen = render(<LocaleProvider><LocaleControl /></LocaleProvider>);
+    fireEvent.click(screen.getByRole('button'));
     expect(document.documentElement.lang).toBe('en');
     expect(document.documentElement.dir).toBe('ltr');
-  });
-  it('switches Arabic to right-to-left and back to English', () => {
-    const screen = render(<LocaleProvider><LocaleControl /></LocaleProvider>);
     fireEvent.click(screen.getByRole('button'));
     expect(document.documentElement.lang).toBe('ar');
     expect(document.documentElement.dir).toBe('rtl');
-    fireEvent.click(screen.getByRole('button'));
-    expect(document.documentElement.lang).toBe('en');
-    expect(document.documentElement.dir).toBe('ltr');
   });
 });

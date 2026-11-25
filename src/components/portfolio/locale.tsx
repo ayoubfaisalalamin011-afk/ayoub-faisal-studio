@@ -1,12 +1,12 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 
 type Language = 'en' | 'ar';
-const LocaleContext = createContext<{ language: Language; toggleLanguage: () => void; t: (en: string, ar: string) => string }>({ language: 'en', toggleLanguage: () => {}, t: (en) => en });
+const LocaleContext = createContext<{ language: Language; toggleLanguage: () => void; t: (en: string, ar: string) => string }>({ language: 'ar', toggleLanguage: () => {}, t: (_en, ar) => ar });
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>('ar');
   useEffect(() => {
     const saved = sessionStorage.getItem('portfolio-language');
-    if (saved === 'ar') setLanguage('ar');
+    if (saved === 'en') setLanguage('en');
   }, []);
   useEffect(() => {
     document.documentElement.lang = language;

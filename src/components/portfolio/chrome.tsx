@@ -10,21 +10,21 @@ export function Navigation() {
   const pathname = useRouterState({ select: s => s.location.pathname });
   useEffect(() => setOpen(false), [pathname]);
   const links = [
-    { to: '/work', en: 'Work', ar: 'الأعمال' },
-    { to: '/about', en: 'About', ar: 'نبذة عني' },
-    { to: '/services', en: 'Services', ar: 'الخدمات' },
-    { to: '/contact', en: 'Contact', ar: 'تواصل' },
+    { to: '/work', en: 'Work', ar: 'طريقتي' },
+    { to: '/about', en: 'About', ar: 'منو أيوب؟' },
+    { to: '/services', en: 'Services', ar: 'بعمل شنو' },
+    { to: '/contact', en: 'Contact', ar: 'نتونس' },
   ] as const;
   return <>
-    <a className="skip-link" href="#main-content">{t('Skip to content', 'انتقل إلى المحتوى')}</a>
+    <a className="skip-link" href="#main-content">{t('Skip to content', 'أمشي للمحتوى')}</a>
     <header className="site-header">
-      <Link to="/" className="wordmark" aria-label={t('Ayoub Faisal — Home', 'أيوب فيصل — الرئيسية')}>AYOUB FAISAL<span className="brand-period">.</span></Link>
-      <nav className="floating-nav" aria-label={t('Main navigation', 'التنقل الرئيسي')}>
+      <Link to="/" className="wordmark" aria-label={t('Ayoub Faisal — Home', 'أيوب فيصل — البداية')}>AYOUB FAISAL<span className="brand-period">.</span></Link>
+      <nav className="floating-nav" aria-label={t('Main navigation', 'القائمة')}>
         {links.map(link => <Button variant="navigation" asChild key={link.to}><Link to={link.to} activeProps={{ className: 'is-active' }}>{t(link.en, link.ar)}{link.to === '/contact' && <ArrowUpRight size={14} />}</Link></Button>)}
       </nav>
       <div className="header-actions">
         <Button variant="navigation" className="language-button" onClick={toggleLanguage} aria-label={t('Switch to Arabic', 'Switch to English')}><span lang={language === 'en' ? 'ar' : 'en'}>{language === 'en' ? 'العربية' : 'EN'}</span><span className="language-dot" /></Button>
-        <Button variant="navigation" size="icon" className="menu-button" aria-expanded={open} aria-controls="mobile-navigation" aria-label={t(open ? 'Close menu' : 'Open menu', open ? 'إغلاق القائمة' : 'فتح القائمة')} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
+        <Button variant="navigation" size="icon" className="menu-button" aria-expanded={open} aria-controls="mobile-navigation" aria-label={t(open ? 'Close menu' : 'Open menu', open ? 'قفّل القائمة' : 'افتح القائمة')} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
       </div>
     </header>
     {open && <nav id="mobile-navigation" className="mobile-nav" aria-label={t('Mobile navigation', 'قائمة التنقل')}>
@@ -35,7 +35,7 @@ export function Navigation() {
 
 export function Footer() {
   const { t } = useLocale();
-  return <footer className="site-footer"><Link to="/" className="wordmark">AYOUB FAISAL<span className="brand-period">.</span></Link><span>{t('© 2026 Ayoub Faisal', '© ٢٠٢٦ أيوب فيصل')}</span><Button variant="editorial" onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })}>{t('Back to top', 'العودة للأعلى')}<ArrowUp size={16} /></Button></footer>;
+  return <footer className="site-footer"><Link to="/" className="wordmark">AYOUB FAISAL<span className="brand-period">.</span></Link><span>{t('© 2026 Ayoub Faisal', '© ٢٠٢٦ أيوب فيصل')}</span><Button variant="editorial" onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })}>{t('Back to top', 'أرجع فوق')}<ArrowUp size={16} /></Button></footer>;
 }
 
 export function MotionEffects() {
